@@ -205,6 +205,7 @@ def load_npz_from_gcs(bucket_name, blob_name):
 bucket_name = 'dt2119-project'
 train_data = load_npz_from_gcs(bucket_name, 'data/train_data.npz')['train_data']
 test_data = load_npz_from_gcs(bucket_name, 'data/test_data.npz')['test_data']
+stateList = load_npz_from_gcs(bucket_name, 'data/statelist.npz')['arr_0']
 
 import numpy as np
 import os
@@ -408,9 +409,6 @@ nor_dyn_lmfcc_test_x = nor_dyn_lmfcc_test_x.astype('float32')
 nor_lmfcc_train_x = nor_lmfcc_train_x.astype('float32')
 nor_lmfcc_val_x = nor_lmfcc_val_x.astype('float32')
 nor_lmfcc_test_x = nor_lmfcc_test_x.astype('float32')
-
-file_path = '/content/drive/MyDrive/data_DT2119/statelist.npz'
-stateList = np.load(file_path, allow_pickle=True)['arr_0']
 
 # Convert the target arrays into a one-hot encoding
 import torch
