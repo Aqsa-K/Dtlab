@@ -513,7 +513,7 @@ test_dataset = torch.utils.data.TensorDataset(test_x, test_y)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 # setup logging so that you can follow training using TensorBoard (see https://pytorch.org/docs/stable/tensorboard.html)
-writer = SummaryWriter()
+# writer = SummaryWriter()
 
 # train the network
 num_epochs = 100
@@ -565,7 +565,7 @@ for epoch in range(num_epochs):
     val_loss /= len(val_loader)
 
     print(f'Epoch {epoch}: train_loss={train_loss}, val_loss={val_loss}')
-    writer.add_scalars('loss',{'train':train_loss,'val':val_loss},epoch)
+    # writer.add_scalars('loss',{'train':train_loss,'val':val_loss},epoch)
 
 # finally evaluate model on the test set here
 net.eval()
