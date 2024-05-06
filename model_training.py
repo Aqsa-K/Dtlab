@@ -502,7 +502,7 @@ optimizer = torch.optim.Adam(net.parameters())
 
 
 
-batch_size = 64
+batch_size = 256
 
 # create the data loaders for training and validation sets
 train_dataset = torch.utils.data.TensorDataset(train_x, train_y)
