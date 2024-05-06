@@ -472,7 +472,7 @@ val_loader = DataLoader(val_dataset, batch_size=256, shuffle=False)
 train_losses = []
 val_losses = []
 
-num_epochs = 10
+num_epochs = 100
 for epoch in range(num_epochs):
     net.train()
     train_loss = 0.0
