@@ -313,6 +313,9 @@ lmfcc_train_x, mspec_train_x, train_y = get_features(X_train,dynamic=True)
 lmfcc_val_x, mspec_val_x, val_y = get_features(X_val,dynamic=True)
 lmfcc_test_x, mspec_test_x, test_y = get_features(test_data,dynamic=True)
 
+lmfcc_train_x = mspec_train_x
+lmfcc_val_x = mspec_val_x
+lmfcc_test_x = mspec_test_x
 
 # In[3]:
 
