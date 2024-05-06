@@ -369,7 +369,7 @@ test_y = F.one_hot(torch.tensor(test_y),num_classes=output_dim)
 import torch
 import torch.nn as nn
 import torch.optim as optim
-# from torch.utils.data import DataLoader, TensorDataset
+from torch.utils.data import DataLoader, TensorDataset
 
 class Net(nn.Module):
     def __init__(self, input_size, output_size):
