@@ -466,7 +466,7 @@ val_loader = DataLoader(val_dataset, batch_size=256, shuffle=False)
 
 
 # setup logging
-writer = SummaryWriter()
+# writer = SummaryWriter()
 
 # Initialize lists to track losses
 train_losses = []
