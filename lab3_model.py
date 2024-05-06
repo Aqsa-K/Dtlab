@@ -369,7 +369,7 @@ test_y = F.one_hot(torch.tensor(test_y),num_classes=output_dim)
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset
+# from torch.utils.data import DataLoader, TensorDataset
 
 class Net(nn.Module):
     def __init__(self, input_size, output_size):
@@ -462,7 +462,7 @@ val_loader = DataLoader(val_dataset, batch_size=256, shuffle=False)
 # In[23]:
 
 
-from torch.utils.tensorboard import SummaryWriter
+# from torch.utils.tensorboard import SummaryWriter
 
 
 # setup logging
@@ -500,7 +500,7 @@ for epoch in range(num_epochs):
     val_losses.append(val_loss)
     
     print(f'Epoch {epoch}: train_loss={train_loss}, val_loss={val_loss}')
-    writer.add_scalars('loss', {'train': train_loss, 'val': val_loss}, epoch)
+    # writer.add_scalars('loss', {'train': train_loss, 'val': val_loss}, epoch)
 
 # save the trained network
 torch.save(net.state_dict(), 'trained-net.pt')
