@@ -309,9 +309,9 @@ print("Validation set: Women->",N_X_val_women,", Men->",N_X_val_man)
 # test_data = np.load('test_data.npz', allow_pickle=True)['test_data']
 
 # dynamic features
-lmfcc_train_x, mspec_train_x, train_y = get_features(X_train,dynamic=False)
-lmfcc_val_x, mspec_val_x, val_y = get_features(X_val,dynamic=False)
-lmfcc_test_x, mspec_test_x, test_y = get_features(test_data,dynamic=False)
+lmfcc_train_x, mspec_train_x, train_y = get_features(X_train,dynamic=True)
+lmfcc_val_x, mspec_val_x, val_y = get_features(X_val,dynamic=True)
+lmfcc_test_x, mspec_test_x, test_y = get_features(test_data,dynamic=True)
 
 
 # In[3]:
