@@ -506,6 +506,15 @@ for epoch in range(num_epochs):
 torch.save(net.state_dict(), 'trained-net.pt')
 
 
+def save_pt_to_gcs(bucket_name, blob_name, local_file_path):
+    blob.upload_from_filename(local_file_path)
+
+# Example usage:
+bucket_name = 'dt2119-project'
+blob_name = 'trained-net.pt'
+local_file_path = 'trained-net.pt'
+save_pt_to_gcs(bucket_name, blob_name, local_file_path)
+
 # In[25]:
 
 
