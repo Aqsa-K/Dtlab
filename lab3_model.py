@@ -534,14 +534,14 @@ save_pt_to_gcs(bucket_name, blob_name, local_file_path)
 # Convert lists to numpy arrays
 train_losses_np = np.array(train_losses)
 val_losses_np = np.array(val_losses)
-train_accuracies_np = np.array(train_accuracies)
-val_accuracies_np = np.array(val_accuracies)
+# train_accuracies_np = np.array(train_accuracies)
+# val_accuracies_np = np.array(val_accuracies)
 
 # Save numpy arrays to files
 np.save('train_losses.npy', train_losses_np)
 np.save('val_losses.npy', val_losses_np)
-np.save('train_accuracies.npy', train_accuracies_np)
-np.save('val_accuracies.npy', val_accuracies_np)
+# np.save('train_accuracies.npy', train_accuracies_np)
+# np.save('val_accuracies.npy', val_accuracies_np)
 
 
 # Define the name of your GCS bucket and file paths
@@ -552,8 +552,8 @@ blob_name_val_accuracies = 'val_accuracies.npy'
 
 save_pt_to_gcs(bucket_name, blob_name_train_losses, blob_name_train_losses)
 save_pt_to_gcs(bucket_name, blob_name_val_losses, blob_name_val_losses)
-save_pt_to_gcs(bucket_name, blob_name_train_accuracies, blob_name_train_accuracies)
-save_pt_to_gcs(bucket_name, blob_name_val_accuracies, blob_name_val_accuracies)
+# save_pt_to_gcs(bucket_name, blob_name_train_accuracies, blob_name_train_accuracies)
+# save_pt_to_gcs(bucket_name, blob_name_val_accuracies, blob_name_val_accuracies)
 
 
 # In[25]:
