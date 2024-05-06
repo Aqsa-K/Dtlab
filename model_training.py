@@ -516,7 +516,7 @@ test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, s
 # writer = SummaryWriter()
 
 # train the network
-num_epochs = 1
+num_epochs = 100
 
 for epoch in range(num_epochs):
     net.train()
