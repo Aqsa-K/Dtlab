@@ -386,8 +386,8 @@ class Net(nn.Module):
 
     def forward(self, x):
         x = self.relu(self.fc1(x))
-        x = self.relu(self.fc2(x))
-        x = self.relu(self.fc3(x))
+        # x = self.relu(self.fc2(x))
+        # x = self.relu(self.fc3(x))
         x = self.fc4(x)  # No activation, as CrossEntropyLoss will apply Softmax
         return x
 
