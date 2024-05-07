@@ -212,7 +212,7 @@ def load_npz_from_gcs(bucket_name, blob_name):
 bucket_name = 'dt2119-project'
 train_data = load_npz_from_gcs(bucket_name, 'data/train_data.npz')['train_data']
 test_data = load_npz_from_gcs(bucket_name, 'data/test_data.npz')['test_data']
-stateList = load_npz_from_gcs(bucket_name, 'data/statelist.npz')['arr_0']
+stateList = load_npz_from_gcs(bucket_name, 'data/statelist.npz')['stateList']
 
 
 
