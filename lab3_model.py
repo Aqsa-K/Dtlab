@@ -497,6 +497,9 @@ for epoch in range(num_epochs):
         correct_train += (predicted == torch.argmax(labels, dim=1)).sum().item()
 
     net.eval()
+    val_loss = 0.0
+    correct_val = 0
+    total_val = 0
     with torch.no_grad():
         for inputs, labels in val_loader:
             outputs = net(inputs)
