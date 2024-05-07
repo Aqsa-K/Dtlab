@@ -280,6 +280,7 @@ def get_features(data,dynamic=True):
     
     return mfcc_features, mspec_features, targets
 
+
 # Load training data
 # train_data = np.load('train_data.npz', allow_pickle=True)['train_data']
 
