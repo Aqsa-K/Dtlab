@@ -474,11 +474,15 @@ val_loader = DataLoader(val_dataset, batch_size=256, shuffle=False)
 # Initialize lists to track losses
 train_losses = []
 val_losses = []
+train_accuracies = []
+val_accuracies = []
 
-num_epochs = 40
+num_epochs = 15
 for epoch in range(num_epochs):
     net.train()
     train_loss = 0.0
+    correct_train = 0
+    total_train = 0
     for inputs, labels in train_loader:
         optimizer.zero_grad()
         outputs = net(inputs)
@@ -487,22 +491,36 @@ for epoch in range(num_epochs):
         optimizer.step()
         train_loss += loss.item()
 
+        _, predicted = torch.max(outputs.data, 1)
+        total_train += labels.size(0)
+        correct_train += (predicted == torch.argmax(labels, dim=1)).sum().item()
+
     net.eval()
     with torch.no_grad():
-        val_loss = 0.0
         for inputs, labels in val_loader:
             outputs = net(inputs)
             loss = criterion(outputs, torch.argmax(labels, dim=1))
             val_loss += loss.item()
 
+            _, predicted = torch.max(outputs.data, 1)
+            total_val += labels.size(0)
+            correct_val += (predicted == torch.argmax(labels, dim=1)).sum().item()
+
+    # Calculate average losses
     train_loss /= len(train_loader)
     val_loss /= len(val_loader)
+    
+    # Calculate accuracies
+    train_accuracy = 100 * correct_train / total_train
+    val_accuracy = 100 * correct_val / total_val
 
-    # Append the epoch losses to the lists
+    # Append the epoch losses and accuracies to the lists
     train_losses.append(train_loss)
     val_losses.append(val_loss)
-    
-    print(f'Epoch {epoch}: train_loss={train_loss}, val_loss={val_loss}')
+    train_accuracies.append(train_accuracy)
+    val_accuracies.append(val_accuracy)
+
+    print(f'Epoch {epoch}: train_loss={train_loss}, train_accuracy={train_accuracy}%, val_loss={val_loss}, val_accuracy={val_accuracy}%')
     # writer.add_scalars('loss', {'train': train_loss, 'val': val_loss}, epoch)
 
 # save the trained network
@@ -537,14 +555,14 @@ save_pt_to_gcs(bucket_name, blob_name, local_file_path)
 # Convert lists to numpy arrays
 train_losses_np = np.array(train_losses)
 val_losses_np = np.array(val_losses)
-# train_accuracies_np = np.array(train_accuracies)
-# val_accuracies_np = np.array(val_accuracies)
+train_accuracies_np = np.array(train_accuracies)
+val_accuracies_np = np.array(val_accuracies)
 
 # Save numpy arrays to files
 np.save('train_losses.npy', train_losses_np)
 np.save('val_losses.npy', val_losses_np)
-# np.save('train_accuracies.npy', train_accuracies_np)
-# np.save('val_accuracies.npy', val_accuracies_np)
+np.save('train_accuracies.npy', train_accuracies_np)
+np.save('val_accuracies.npy', val_accuracies_np)
 
 
 # Define the name of your GCS bucket and file paths
@@ -555,8 +573,8 @@ blob_name_val_accuracies = 'val_accuracies.npy'
 
 save_pt_to_gcs(bucket_name, blob_name_train_losses, blob_name_train_losses)
 save_pt_to_gcs(bucket_name, blob_name_val_losses, blob_name_val_losses)
-# save_pt_to_gcs(bucket_name, blob_name_train_accuracies, blob_name_train_accuracies)
-# save_pt_to_gcs(bucket_name, blob_name_val_accuracies, blob_name_val_accuracies)
+save_pt_to_gcs(bucket_name, blob_name_train_accuracies, blob_name_train_accuracies)
+save_pt_to_gcs(bucket_name, blob_name_val_accuracies, blob_name_val_accuracies)
 
 
 # In[25]:
